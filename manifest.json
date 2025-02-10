@@ -1,0 +1,15 @@
+{
+    "domain": "homeassistant_a5_stundenplan",
+    "name": "FHV A5-Studenplan",
+    "version": "1.0.0",
+    "documentation": "https://github.com/lukas3482/homeassistant_a5_stundenplan", 
+    "dependencies": [],
+    "codeowners": ["@Lukas3482"],
+    "iot_class": "cloud_polling",
+    "requirements": [
+      "python-dateutil",   
+      "requests>=2.28.0",
+      "voluptuous>=0.12.2"
+      ]
+  }
+  
