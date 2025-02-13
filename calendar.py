@@ -73,6 +73,12 @@ class A5StundenplanCalendar(CalendarEntity):
             else:
                 event_summary = f"{event.get('event_subject', 'Kein Titel')}, Raum: {event.get('rooms', '-')}"
 
+            if event.get("is_holiday", False):
+                event_summary = f"Feiertag: {event.get('event_name', '-')}"
+
+            if event.get("is_vacation", False):
+                event_summary = f"Urlaub: {event.get('event_name', '-')}"
+
             event_description = f"Lecturers: {event.get('lecturers', '-')}   Gruppen: {event.get('planning_groups', '-')}   Räume: {event.get('rooms', '-')}"
 
             events.append(
