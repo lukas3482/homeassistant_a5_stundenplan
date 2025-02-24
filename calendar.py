@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 import logging
 
-from homeassistant.components.calendar import CalendarEntity
+from homeassistant.components.calendar import CalendarEntity # type: ignore
 from homeassistant.core import HomeAssistant
 from homeassistant.util import dt as dt_util
 
