@@ -4,6 +4,7 @@ import logging
 
 from homeassistant.components.calendar import CalendarEntity # type: ignore
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.util import dt as dt_util
 
 from .const import DOMAIN
@@ -26,11 +27,15 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     async_add_entities([A5StundenplanCalendar(coordinator)], True)
 
 
-class A5StundenplanCalendar(CalendarEntity):
+class A5StundenplanCalendar(CoordinatorEntity, CalendarEntity):
     def __init__(self, coordinator):
-        self.coordinator = coordinator
+        super().__init__(coordinator)
         self._attr_name = "FHV A5 Stundenplan"
         _LOGGER.debug("Kalender-Entität '%s' initialisiert", self._attr_name)
+
+    async def async_added_to_hass(self):
+        await super().async_added_to_hass()
+        self.coordinator.async_add_listener(self.async_write_ha_state)
 
     @property
     def device_state_attributes(self):
